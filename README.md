@@ -1,6 +1,6 @@
 # A710160076.github.io
 tugas
- <html>
+  <html>
 <head>
 <title>warna-warna</title>
 </head>
