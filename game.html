@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+Nama Anggota kelompok :
+<p>Rizkha Kirana Prastika Putri (A710160043)</p>
+<p>Lahmi Maulina				 (A710160064)</p>
+<p>Intar Abdeas Aprilia		 (A71010068)</p>
+<p>Siska Mutia Ardani			 (A71010076)</p>
+<title> Game Menyusun Kalimat dan Tebak Angka </title
+<h1> Susun kata " belajar - saya - sedang" </h1>
+<br>
+<form name="kuis">
+<input type="text" name="jawab">
+<br>
+<input type="button" name="button" value="Jawab" onclick="jawab2()">
+</form> 
+<script language="JavaScript" type="text/JavaScript">
+function jawab2()
+{
+var jaw;
+jaw = document.kuis.jawab.value;
+if (jaw=="Saya Sedang Belajar")
+{
+window.location="xxx";
+}
+else if (jaw=="Saya Sedang Belajar")
+{
+window.location="xxx";
+}
+else
+{
+alert("Jawaban Anda benar!");
+}
+
+}
+</script> 
+</head>
+</html>
+
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <title>Bermain Tebak Angka dengan Menggunakan Javascript</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+        
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .lastResult {
+            color: white;
+            padding: 3px;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h1>Bermain Tebak Angka </h1>
+    <p>Disini Akan teracak nomor lalu teman-teman di minta menjawabnya, di berikan 10x kesempatan jika tebakan angka terlalu <strong>tinggi atau rendah</strong> akan di beritahukan dan jika <strong>"Benar akan muncul pemberitahuannya juga tentunya."</strong></p>
+    <div class="form"> <label for="guessField">Masukan Nomor yang anda pilih <strong>1-100</strong>: </label><input type="text" id="guessField" class="guessField"> <input type="submit" value="Pilih" class="guessSubmit"> </div>
+    <div class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+    </div>
+</body>
+<script>
+    // Your JavaScript goes here
+    var randomNumber = Math.floor(Math.random() * 100) + 1;
+    var guesses = document.querySelector('.guesses');
+    var lastResult = document.querySelector('.lastResult');
+    var lowOrHi = document.querySelector('.lowOrHi');
+    var guessSubmit = document.querySelector('.guessSubmit');
+    var guessField = document.querySelector('.guessField');
+    var guessCount = 1;
+    var resetButton;
+ 
+    function checkGuess() {
+      var userGuess = Number(guessField.value);
+      if (guessCount === 1) {
+        guesses.textContent = 'Anda Memasukan : ';
+      }
+ 
+      guesses.textContent += userGuess + ' ';
+ 
+      if (userGuess === randomNumber) {
+        lastResult.textContent = 'SELAMAT! Tebakan Anda Benar!';
+        lastResult.style.backgroundColor = 'green';
+        lowOrHi.textContent = '';
+        setGameOver();
+      } else if (guessCount === 10) {
+        lastResult.textContent = '!!!Sayang sekali Anda Kurang Beruntung Permainan Selesai, Coba lagi !!!';
+        lowOrHi.textContent = '';
+        setGameOver();
+      } else {
+        lastResult.textContent = 'Wooo Salah!';
+        lastResult.style.backgroundColor = 'red';
+        if(userGuess < randomNumber) {
+          lowOrHi.textContent='Angka yang anda masukan Terlalu Rendah!' ;
+        } else if(userGuess > randomNumber) {
+          lowOrHi.textContent = 'Angka yang anda masukan Terlalu Tinggi!';
+        }
+      }
+ 
+      guessCount++;
+      guessField.value = '';
+    }
+ 
+    guessSubmit.addEventListener('click', checkGuess);
+ 
+    function setGameOver() {
+      guessField.disabled = true;
+      guessSubmit.disabled = true;
+      resetButton = document.createElement('button');
+      resetButton.textContent = 'Start new game';
+      document.body.appendChild(resetButton);
+      resetButton.addEventListener('click', resetGame);
+    }
+ 
+    function resetGame() {
+      guessCount = 1;
+      var resetParas = document.querySelectorAll('.resultParas p');
+      for(var i = 0 ; i < resetParas.length ; i++) {
+        resetParas[i].textContent='';
+      }
+ 
+      resetButton.parentNode.removeChild(resetButton);
+      guessField.disabled = false;
+      guessSubmit.disabled = false;
+      guessField.value='';
+      guessField.focus();
+      lastResult.style.backgroundColor='white';
+      randomNumber=Math.floor(Math.random() * 100) + 1;
+    }
+</script>
+ 
+</html>
